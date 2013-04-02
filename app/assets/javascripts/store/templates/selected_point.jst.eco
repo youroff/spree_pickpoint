@@ -1,0 +1,76 @@
+<div class="row">
+	<h3>Место получения заказа</h3>
+    <div class="six columns alpha">
+		<div class="pickpoint_name">
+		    <%= @point.name %>
+		    <% if @point.metro: %>
+		        <span class="pickpoint_metro">(<%= @point.metro %>)</span>
+		    <% end %>
+		</div>
+		<div class="pickpoint_addr">
+		    <%= @point.addr %>
+		</div>
+		<br/>
+		<div>
+		    <% if @point.out: %>
+		        <div class="pickpoint_out">
+		            <b>Как пройти?</b><br/> <%= @point.out %>
+		        </div>
+		    <% end %>
+		    <% if @point.in: %>
+		        <div class="pickpoint_in">
+		            <b>Расположение внутри:</b> <%= @point.in %>
+		        </div>
+		    <% end %>
+		</div>
+		<div>
+            <% if @point.cash || @point.card: %>
+                <div class="pickpoint_payment">
+                    Варианты оплаты: 
+                    <% if @point.cash: %>
+                        <img src="/assets/store/cash.gif" width="14" height="11" title="Наличные"/>
+                    <% end %>
+                    <% if @point.card: %>
+                        <img src="/assets/store/visa.gif" width="17" height="11" title="Карта VISA"/>
+                        <img src="/assets/store/mastercard.gif" width="18" height="11" title="Карта MasterCard"/>
+                    <% end %>
+                </div>
+            <% end %>
+            <div class="pickpoint_delivery">
+                 Стоимость доставки: <strong><%= @point.delivery_price %> руб.</strong>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="pickpoint_sched">
+            <!-- <div class="pickpoint_sched_title">
+                Время работы:
+            </div> -->
+            <% for day in @point.sched.split(','): %>
+                <div class="pickpoint_sched_day<%= ' not_working' if day == 'NODAY' %><%= ' weekend' if @week_days.length < 3 %>" style="<%= 'margin-right: 0px;' if @week_days.length == 1 %>">
+                    <div class="pickpoint_sched_day_title">
+                        <%= @week_days.shift() %>
+                    </div>
+                    <div class="pickpoint_sched_value">
+                        <% if day == 'NODAY': %>
+                            &nbsp;<br/>&nbsp;
+                        <% else: %>
+                            <% periods = day.split('/') %> <!-- periods[1] is a lunch break -->
+                            <% hours = periods[0].split('-') %>
+                            <%= hours[0] %><br/><%= hours[1] %>
+                        <% end %>
+                    </div>
+                </div>
+            <% end %>
+            <div style='clear: both'></div>
+        </div>
+		<br/>
+        <div class="pickpoint_change">
+            <a href="#" class="button primary">Изменить место получения заказа</a>        
+        </div>
+		<br/>
+    </div>
+    <div class="six columns omega">
+        <div id="small_map_canvas"></div>
+    </div>
+    <div class="clear"</div>
+</div>

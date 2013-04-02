@@ -1,0 +1,109 @@
+#map_canvas { height: 400px }
+#map_canvas img { max-width: none; }
+
+#small_map_canvas {
+	height: 200px;
+}
+
+.pickpoint_container {
+	max-width: 400px;
+}
+
+.pickpoint_container.loading {
+	width: 300px;
+	height: 150px;
+	background: url('/assets/store/ajax-loader.gif') 50% 50% no-repeat;
+}
+
+.pickpoint_name {
+	font-size: 14px;
+	font-weight: bold;
+	color: #e34e05;
+	text-shadow: 1px 1px #fce1d3;
+}
+
+.pickpoint_metro {
+	color: #9b9a9a;
+	font-size: 11px;
+	line-height: 11px;
+}
+
+.pickpoint_addr {
+	font-weight: bold;
+}
+
+.pickpoint_payment {
+	float: left;
+	margin: 5px 0 5px 0;
+}
+
+.pickpoint_payment img {
+	margin-left: 2px;
+	vertical-align: middle;
+}
+
+.pickpoint_delivery {
+	float: right;
+	margin: 5px 0 5px 0;
+}
+
+.pickpoint_select {
+	text-align: right;
+}
+
+.pickpoint_sched_day {
+	overflow: hidden;
+	float: left;
+	width: 45px;
+	margin-right: 4px;
+	background: #d5ffd6;
+}
+
+.pickpoint_sched_day_title {
+	background: #63834a;
+	color: #f1faea;
+	padding: 2px 4px;
+	font-weight: bold;
+}
+
+.pickpoint_sched_value {
+	text-align: center;
+	font-size: 11px;
+}
+
+.weekend {
+	background: #ffd5d5;
+}
+
+.weekend .pickpoint_sched_day_title {
+	background: #834a4a;
+}
+
+.not_working {
+	background: #e0e0e0;
+}
+
+.not_working .pickpoint_sched_day_title {
+	background: #838383;
+}
+
+.pickpoint_select {
+	padding: 10px 0px 0px 0px;
+}
+
+#map_finder_wrapper {
+	text-align: right; 
+  	padding: 10px 0;
+}
+
+#map_finder .search_field {
+	border-radius: 5px;
+	float: left;
+	width: 73%;
+	height: 23px;
+}
+
+#map_finder .search_button {
+	float: right;
+	width: 23%;
+}

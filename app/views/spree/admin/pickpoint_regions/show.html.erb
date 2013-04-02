@@ -1,0 +1,26 @@
+<%= render :partial => 'spree/admin/shared/pickpoint_sub_menu' %>
+
+<h1><%= t(:pickpoint_regions) %></h1>
+
+<%= form_tag(admin_pickpoint_regions_path, :method => :put) do %>
+    <table class="index" id="listing_pickpoint_regions">
+      <tr data-hook="admin_pickpoint_regions_index_headers">
+        <th>
+            <%= t(:pickpoint_region) %>
+            <%= link_to t(:pickpoint_sync_regions), admin_pickpoint_regions_path(:refresh => 1) %>
+        </th>
+        <th>
+            <%= t(:pickpoint_delivery_price) %>
+        </th>
+      </tr>
+      <% @regions.each do |region| %>
+      <tr>
+        <td><%= region.name %>:</td>
+        <td><%= text_field(:price, region.id, :value => region.price)  %></td>
+      </tr>
+      <% end %>  
+    </table>
+    <p class="form-buttons" data-hook="buttons">
+      <%= button t(:update) %>
+    </p>
+<% end %>

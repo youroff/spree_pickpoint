@@ -1,0 +1,6 @@
+<!-- insert_top '[data-hook="admin_order_tabs"]' -->
+<%- if @order.pickpoint %>
+	<li<%== ' class="active"' if current == 'Pickpoint' %>>
+	  <%= link_to_with_icon 'icon-briefcase', t(:pickpoint), edit_admin_order_pickpoint_delivery_url(@order) %>
+	</li>
+<% end %>

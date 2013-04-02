@@ -1,0 +1,24 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+ru:
+  order_adjustments: "Дополнительно"
+  pickpoint_admin: "Pick\PPoint"
+  pickpoint_regions: "Регионы доставки"
+  pickpoint_sync_regions: "синхронихировать с API"
+  pickpoint_settings: "Настройки PickPoint"
+  pickpoint_settings_description: "Реквизиты доступа к API и таблица расценок по регионам"
+  pickpoint_region: "Регион"
+  pickpoint_delivery_price: "Стоимость доставки"
+  
+  pickpoint_calculator_description: "Доставка Pickpoint"
+  
+  pickpoint_customer:
+    attributes.pickpoint_num.must_select_pickpoint: "Вы должны выбрать место получения заказа"
+    name: '"Имя"'
+    phone: '"Мобильный телефон"'
+    pickpoint_num: ''
+  order_state:
+    pickpoint: "Доставка"
+  name_or_alias: "Имя или псевдоним"
+  cellphone: "Мобильный телефон"

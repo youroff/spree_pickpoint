@@ -1,0 +1,78 @@
+<%= render :partial => 'spree/admin/shared/order_tabs', :locals => { :current => 'Pickpoint' } %>
+
+<% content_for :page_actions do %>  
+    <li><%= button_link_to t(:back_to_orders_list), admin_orders_path, :icon => 'icon-arrow-left' %></li>  
+<% end %>
+
+<% content_for :page_title do %>
+  <i class="icon-arrow-right"></i> <%= t(:pickpoint_delivery) %>
+<% end %>
+
+<div class="row">
+	<h4>Статус доставки</h4>
+	<%= form_tag edit_admin_order_pickpoint_delivery_url(@order) do -%>
+		<fieldset class="no-border-top">
+			<div class="field" id="delivery_tracking_field">
+				<label for="delivery_tracking">Трэкинг-номер</label>
+				<%=  %>
+			      <input class="fullwidth title" id="delivery_tracking" name="product[name]">
+			</div>
+		</fieldset>
+	<% end -%>
+</div>
+<div class="row">
+	<div class="alpha seven columns">
+		<h4>Информация о постамате</h4>
+		<table>
+			<tr>
+				<td>
+					<%= @order.pickpoint.num %>
+					<% if @order.pickpoint.cash %>
+	                    <img src="/assets/store/cash.gif" width="14" height="11" title="Наличные"/>
+	                <% end %>
+	                <% if @order.pickpoint.card %>
+	                    <img src="/assets/store/visa.gif" width="17" height="11" title="Карта VISA"/>
+	                    <img src="/assets/store/mastercard.gif" width="18" height="11" title="Карта MasterCard"/>
+	                <% end %>
+				</td>
+			</tr>
+			<tr>
+				<td><%= @order.pickpoint.name %></td>
+			</tr>
+			<tr>
+				<td>
+					<%= @order.pickpoint.region %><br/>
+					<%= @order.pickpoint.city + ', ' + @order.pickpoint.addr %>
+				</td>
+			</tr>
+			<% unless @order.pickpoint.out.empty? %>
+				<tr>
+					<td>
+						<strong>Как найти снаружи: </strong><%= @order.pickpoint.out %>
+					</td>
+				</tr>
+			<% end %>
+			<% unless @order.pickpoint.in.empty? %>
+				<tr>
+					<td>
+						<strong>Как найти внутри: </strong><%= @order.pickpoint.in %>
+					</td>
+				</tr>
+			<% end %>
+			<tr>
+				<td><%= @order.pickpoint.sched %></td>
+			</tr>			
+		</table>	
+	</div>
+	<div class="omega five columns">
+		<h4>Информация о клиенте</h4>
+		<table>
+			<tr>
+				<td><strong>Имя: </strong><%= @order.pickpoint_customer.name %></td>
+			</tr>
+			<tr>
+				<td><strong>Телефон: </strong><%= @order.pickpoint_customer.phone %></td>
+			</tr>
+		</table>
+	</div>
+</div>

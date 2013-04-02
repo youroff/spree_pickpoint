@@ -1,0 +1,20 @@
+#pickpoint_customer_form {
+	margin-top: 30px;
+}
+
+#pickpoint_customer_form label {
+	font-weight: bold;
+	font-size: 15px;
+}
+
+#pickpoint_customer_form p {
+	padding: 3px 0;
+	color: grey;
+	line-height: 13px;
+	font-size: 13px;
+}
+
+#pickpoint_customer_form input {
+	width: 70%;
+	border-radius: 5px;
+}

@@ -1,0 +1,15 @@
+<%= javascript_tag "pickpoints = " + Spree::Pickpoint.coordinates %>
+<div id="pickpoint_map_widget">
+    <h3>Выберите место получения заказа</h3>
+    <p>Для доставки товаров мы используем службу <a href="http://pickpoint.ru">PickPoint</a>.
+       Это современная служба доставки, управляющая сотнями автоматизированных и традиционных пунктов выдачи заказов по всей России.
+       Данный способ доставки обеспечивает наивысшую степень анонимности. Чтобы найти ближайший к вам пункт выдачи заказов, используйте карту или наберите почтовый адрес в поле поиска.</p>
+    <div id="map_finder_wrapper">
+        <form id="map_finder">
+            <input type="text" class="search_field" value=""/>
+            <input type="submit" class="search_button button primary" value="Искать по адресу">
+        </form>
+        <div class="clear"></div>
+    </div>
+    <div id="map_canvas"></div>    
+</div>
