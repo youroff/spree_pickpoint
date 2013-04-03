@@ -1,8 +1,8 @@
-<<<<<<< HEAD
 SpreePickpoint
 ==============
 
-Introduction goes here.
+Support for http://pickpoint.ru delivery service.
+Not complete. Not functional.
 
 
 Example
@@ -23,6 +23,3 @@ Copyright (c) 2012 [name of extension creator], released under the New BSD Licen
 =======
 spree_pickpoint
 ===============
-
-Pickpoint support for Spree
->>>>>>> 478245fe4c263d5c926f0a8c9d25e4342d247128
