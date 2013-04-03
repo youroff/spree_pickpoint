@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 \#*
 *~
 .#*
@@ -8,3 +9,23 @@ tmp
 nbproject
 *.swp
 spec/dummy
+=======
+*.gem
+*.rbc
+.bundle
+.config
+coverage
+InstalledFiles
+lib/bundler/man
+pkg
+rdoc
+spec/reports
+test/tmp
+test/version_tmp
+tmp
+
+# YARD artifacts
+.yardoc
+_yardoc
+doc/
+>>>>>>> 478245fe4c263d5c926f0a8c9d25e4342d247128
