@@ -20,24 +20,25 @@ module Spree
       order.adjustments.where(originator_type: "Spree::PickpointCustomer").delete_all
       order.adjustments.create({ :amount => pickpoint.delivery_price,
                                  :source => order,
+                                 # :mandatory => true,
                                  :originator => self,
-                                 :state => "closed",
+                                 :locked => true,
                                  :label => "Доставка:" }, :without_protection => true      )
       order.adjustments.create({ :amount => calculate_discount(order),
                                 :source => order,
+                                # :mandatory => true,
                                 :originator => self,
-                                :state => "open",
+                                :locked => false,
                                 :label => "Скидка на доставку:" }, :without_protection => true)
     end
     
     def update_adjustment(adjustment, order)
-      adjustment.amount = calculate_discount(order)
+      adjustment.update_attribute_without_callbacks(:amount, calculate_discount(order))
     end
     
     def calculate_discount(order)
       discount = (order.item_total.to_i > 2000) ? (0.1 * order.item_total.to_i).round : 0
       - ((discount > pickpoint.delivery_price) ? pickpoint.delivery_price : discount)
     end
-    
   end
 end
