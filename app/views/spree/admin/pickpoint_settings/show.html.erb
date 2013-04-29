@@ -1,0 +1,20 @@
+<%= render :partial => 'spree/admin/shared/pickpoint_sub_menu' %>
+
+<h1><%= t(:pickpoint_settings) %></h1>
+<div class="alpha six columns">
+	<%= form_tag admin_pickpoint_settings_path, :method => :put do %>
+	    <fieldset class="general no-border-top">  
+		<% @preferences_pickpoint.each do |key|
+	          type = Spree::PickpointConfiguration.preference_type(key) %>
+	          <div class="field">
+	            <%= label_tag(key, t(key) + ': ') + tag(:br) if type != :boolean %>
+	            <%= preference_field_tag(key, Spree::PickpointConfiguration[key], :type => type) %>
+	            <%= label_tag(key, t(key)) + tag(:br) if type == :boolean %>
+	          </div>
+	      <% end %>
+			<div class="form-buttons filter-actions actions" data-hook="buttons">
+				<%= button t(:update), 'icon-refresh' %>
+			</div>
+		</fieldset>
+	<% end %>
+</div>

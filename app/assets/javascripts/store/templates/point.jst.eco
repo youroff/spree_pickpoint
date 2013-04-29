@@ -3,6 +3,11 @@
     <div class="pickpoint_addr">
         <%= @point.addr %>
     </div>
+	<% if @point.out: %>
+		<div class="pickpoint_desc">
+			<strong>Как найти:</strong> <%= @point.out %>
+		</div>
+	<% end %>
     <div>
         <% if @point.cash || @point.card: %>
             <div class="pickpoint_payment">
