@@ -8,7 +8,7 @@ module Spree
     
       def load_order
         @order ||= Order.find_by_number(params[:order_id])
-        authorize! action, @order
+        authorize! params[:action].to_sym, @order
       end
     end
   end
