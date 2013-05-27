@@ -1,0 +1,86 @@
+<%= render :partial => 'spree/admin/shared/pickpoint_sub_menu' %>
+
+<h1><%= t(:pickpoint_main_point) %></h1>
+
+<div>
+	<% if @point.try(:errors).present? %>
+		<%= render :partial => 'spree/shared/error_messages', :locals => { :target => @point } %>
+	<% end %>
+	<%= form_for @point, :url => admin_pickpoint_main_url, :method => :put do |f| %>
+		<%= f.hidden_field :ptype, value: 'main' %>
+		<%= f.hidden_field :status, value: '0000' %>
+		<%= f.hidden_field :region, value: 'Центральный офис' %>
+		<fieldset class="no-border-top">
+			<div class="alpha columns ten">
+				<%= f.field_container :name do %>
+					<%= f.label :name, raw(t(:name) + content_tag(:span, ' *', :class => 'required')) %>
+					<%= f.text_field :name, :class => 'fullwidth title' %>
+					<%= f.error_message_on :name %>
+				<% end %>
+			
+				<%= f.field_container :city do %>
+					<%= f.label :city, raw(t(:city) + content_tag(:span, ' *', :class => 'required')) %>
+					<%= f.text_field :city, :class => 'fullwidth title' %>
+					<%= f.error_message_on :city %>
+				<% end %>
+				
+				<%= f.field_container :region do %>
+					<%= f.label :region, raw(t(:region) + content_tag(:span, ' *', :class => 'required')) %>
+					<%= f.text_field :region, :class => 'fullwidth title' %>
+					<%= f.error_message_on :region %>
+				<% end %>
+			
+				<%= f.field_container :addr do %>
+					<%= f.label :addr, raw(t(:address) + content_tag(:span, ' *', :class => 'required')) %>
+					<%= f.text_field :addr, :class => 'fullwidth title' %>
+					<%= f.error_message_on :addr %>
+				<% end %>
+				
+				<%= f.field_container :metro do %>
+					<%= f.label :metro, raw(t(:metro) + content_tag(:span, ' *', :class => 'required')) %>
+					<%= f.text_field :metro, :class => 'fullwidth title' %>
+					<%= f.error_message_on :metro %>
+				<% end %>
+				
+				<%= f.field_container :sched do %>
+					<%= f.label :sched, raw(t(:schedule) + content_tag(:span, ' *', :class => 'required')) %>
+					<%= f.text_field :sched, :class => 'fullwidth title' %>
+					<%= f.error_message_on :sched %>
+				<% end %>
+				
+				<%= f.field_container :out do %>
+					<%= f.label :out, raw(t(:how_to_find)) %>
+					<%= f.text_area :out, {:class => 'fullwidth title', :rows => 4} %>
+					<%= f.error_message_on :out %>
+				<% end %>
+				
+			</div>
+			<div class="alpha columns six">
+				<%= f.field_container :lat do %>
+					<%= f.label :lat, raw(t(:latitude)) %>
+					<%= f.text_field :lat, :class => 'fullwidth title' %>
+					<%= f.error_message_on :lat %>
+				<% end %>
+				<%= f.field_container :lng do %>
+					<%= f.label :lng, raw(t(:longitude)) %>
+					<%= f.text_field :lng, :class => 'fullwidth title' %>
+					<%= f.error_message_on :lng %>
+				<% end %>
+				<%= f.field_container :cash, class: %w'alpha columns two' do %>
+					<%= f.label :cash, raw(t(:cash)) %>
+					<%= f.check_box :cash, :class => 'fullwidth title' %>
+					<%= f.error_message_on :cash %>
+				<% end %>
+				<%= f.field_container :card, class: %w'omega columns four' do %>
+					<%= f.label :card, raw(t(:card)) %>
+					<%= f.check_box :card, :class => 'fullwidth title' %>
+					<%= f.error_message_on :card %>
+				<% end %>
+			</div>
+			<div class="clear"></div>
+			<div class="filter-actions actions">
+				<%= button t(:update), 'icon-refresh' %>
+			</div>
+		</fieldset>
+	<% end %>	
+</div>

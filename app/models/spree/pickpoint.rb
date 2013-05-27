@@ -42,13 +42,13 @@ module Spree
     end
     
     def delivery_price
-      @delivery_price ||= price.price
+      @delivery_price ||= price.price || 0
     end
     
     def payment_opts
       opts = []
-      opts << "наличные" if card
-      opts << "банковские карты" if cash
+      opts << "наличные" if cash
+      opts << "банковские карты" if card
       opts
     end
   end

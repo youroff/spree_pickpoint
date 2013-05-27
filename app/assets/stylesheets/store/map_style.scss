@@ -1,3 +1,7 @@
+#pickpoint_map_widget {
+	display: none;
+}
+
 #map_canvas { height: 400px }
 #map_canvas img { max-width: none; }
 
@@ -110,4 +114,10 @@
 #map_finder .search_button {
 	float: right;
 	width: 23%;
+}
+#pickpoint_type_select {
+	padding-bottom: 30px;
+	h4 {
+		margin: 5px 0 10px 0;
+	}
 }

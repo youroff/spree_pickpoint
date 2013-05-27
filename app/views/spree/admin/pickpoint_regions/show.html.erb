@@ -1,26 +1,18 @@
 <%= render :partial => 'spree/admin/shared/pickpoint_sub_menu' %>
 
-<h1><%= t(:pickpoint_regions) %></h1>
+<h1><%= t(:pickpoint_regions) %> (<%= link_to t(:pickpoint_sync_regions), admin_pickpoint_regions_path(:refresh => 1) %>)</h1>
 
 <%= form_tag(admin_pickpoint_regions_path, :method => :put) do %>
-    <table class="index" id="listing_pickpoint_regions">
-      <tr data-hook="admin_pickpoint_regions_index_headers">
-        <th>
-            <%= t(:pickpoint_region) %>
-            <%= link_to t(:pickpoint_sync_regions), admin_pickpoint_regions_path(:refresh => 1) %>
-        </th>
-        <th>
-            <%= t(:pickpoint_delivery_price) %>
-        </th>
-      </tr>
-      <% @regions.each do |region| %>
-      <tr>
-        <td><%= region.name %>:</td>
-        <td><%= text_field(:price, region.id, :value => region.price)  %></td>
-      </tr>
-      <% end %>  
-    </table>
-    <p class="form-buttons" data-hook="buttons">
-      <%= button t(:update) %>
-    </p>
+	<fieldset class="no-border-top">    
+		<% @regions.select { |r| r.pickpoints.active.size > 0 || r.pickpoints.include?(pickpoint_home) }.each_with_index do |region, i| %>
+	        <div class="field columns three <%= "alpha" if i % 5 == 0 || i == 0 %>  <%= "omega" if (i + 1) % 5 == 0 %>">
+				<%= label :price, "#{region.name} - #{region.pickpoints.active.size}" %>
+	        	<%= text_field :price, region.id, :value => region.price, :class => 'fullwidth'  %>
+			</div>
+	    <% end %>
+		<div class="clear"></div>
+		<div class="filter-actions actions" data-hook="admin_order_form_buttons">
+			<%= button t(:update), 'icon-refresh' %>
+		</div>
+	</fieldset>
 <% end %>

@@ -1,29 +1,35 @@
-<div class="columns alpha twelve">
-    <% @pickpoint = @order.pickpoint %>
-    <div id="selected_pickpoint" data-point="<%= render(file: 'spree/pickpoints/show.json.rabl') if @pickpoint %>">
-    </div>
-  <%= form.fields_for :pickpoint_customer do |pickpoint_customer_form| %>
-    <div id="pickpoint_customer_form" class="row">
-      <div class="six columns alpha">
-        <%= pickpoint_customer_form.label :name, t(:name_or_alias) %><br />
-        <p>
-            Вы можете указать выдуманное имя, если желаете сохранить абсолютную анонимность. Имя используется только для формирования автоматических сообщений.
-        </p>
-        <%= pickpoint_customer_form.text_field :name %>
-      </div>
-      <div class="six columns omega">
-        <%= pickpoint_customer_form.label :phone, t(:cellphone) %><br />
-        <p>
-            На этот номер вам придет SMS с кодом для получения покупки в постамате или пункте выдачи заказов Pickpoint. Согласно политике анонимности, мы не звоним клиентам: если потребуется что-то уточнить, мы свяжемся с вами по E-mail.
-        </p>
-        <%= pickpoint_customer_form.text_field :phone %>
-      </div>
-      <%= pickpoint_customer_form.hidden_field :pickpoint_num %>
-    </div>
-  <% end %>
-</div>
+<div id="pickpoint_form_wrapper">
+	<div class="columns alpha twelve">
+	    <% @pickpoint = @order.pickpoint %>
+	    <div id="selected_pickpoint"
+			data-point="<%= render(file: 'spree/pickpoints/show.json.rabl') if @pickpoint %>"
+			data-home-point="<%= render(file: 'spree/pickpoints/show.json.rabl', locals: {pickpoint: pickpoint_home}) %>">
+	    </div>
+	  <%= form.fields_for :pickpoint_customer do |pickpoint_customer_form| %>
+	    <div id="pickpoint_customer_form" class="row">
+	      <div class="six columns alpha">
+	        <%= pickpoint_customer_form.label :name, t(:name_or_alias) %><br />
+	        <p>
+	            Вы можете указать выдуманное имя, если желаете сохранить абсолютную анонимность. Имя используется только для формирования автоматических сообщений.
+	        </p>
+	        <%= pickpoint_customer_form.text_field :name %>
+	      </div>
+	      <div class="six columns omega">
+	        <%= pickpoint_customer_form.label :phone, t(:cellphone) %><br />
+	        <p>
+	            Укажите номер мобильного телефона без "восьмерки".
+				На этот номер вам придет SMS с кодом для получения покупки в постамате или пункте выдачи заказов Pickpoint.
+				Согласно политике анонимности, мы не звоним клиентам: если потребуется что-то уточнить, мы свяжемся с вами по E-mail.
+	        </p>
+	        <%= pickpoint_customer_form.text_field :phone %>
+	      </div>
+	      <%= pickpoint_customer_form.hidden_field :pickpoint_num %>
+	    </div>
+	  <% end %>
+	</div>
 
-<hr class="clear" />
-<div class="form-buttons" data-hook="buttons">
-  <%= submit_tag t(:save_and_continue), :class => 'continue button primary' %>
+	<hr class="clear" />
+	<div class="form-buttons" data-hook="buttons">
+	  <%= submit_tag t(:save_and_continue), :class => 'continue button primary' %>
+	</div>
 </div>

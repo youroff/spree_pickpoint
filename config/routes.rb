@@ -2,6 +2,7 @@ Spree::Core::Engine.routes.append do
 
   namespace :admin do
     resource :pickpoint_regions
+    resource :pickpoint_main
     resource :pickpoint_settings do
       collection do
         post :dismiss_alert

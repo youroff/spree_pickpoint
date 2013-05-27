@@ -1,7 +1,10 @@
 $ ->
-	postamat_image = new google.maps.MarkerImage '/assets/store/pickpoint_postamat.png'
-	office_image = new google.maps.MarkerImage '/assets/store/pickpoint_office.png'
 	window.pickpoint_data = {}
+	images = {
+		pvz: new google.maps.MarkerImage('/assets/store/pickpoint_office.png'),
+		apt: new google.maps.MarkerImage('/assets/store/pickpoint_postamat.png'),
+		main: new google.maps.MarkerImage('/assets/store/pickpoint_home.png')
+	}
 	
 	generate_small_map = (data)->
 		map_opts =
@@ -15,12 +18,13 @@ $ ->
 		marker_opts =
 			position: new google.maps.LatLng(data.lat, data.lng),
 			content: data.name,
-			icon: if data.ptype == 'pvz' then office_image else postamat_image
+			icon: images[data.ptype]
 			map: map
 		marker = new google.maps.Marker marker_opts
 		
 	if selected_pickpoint = ($ '#selected_pickpoint').data('point')
-		($ '#pickpoint_map_widget').hide()
+		($ '#pickpoint_type_select').hide()
+		($ '#pickpoint_form_wrapper').slideDown()
 		($ '#selected_pickpoint').html JST['store/templates/selected_point'](point: selected_pickpoint, week_days: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'])
 		generate_small_map(selected_pickpoint)
 
@@ -42,7 +46,7 @@ $ ->
 			marker_opts =
 				position: new google.maps.LatLng(p.lat, p.lng),
 				content: p,
-				icon: if p.ptype == 'pvz' then office_image else postamat_image
+				icon: images[p.ptype]
 				map: map
 			marker = new google.maps.Marker marker_opts
 			google.maps.event.addListener marker, 'click', ->
@@ -90,13 +94,32 @@ $ ->
 			generate_small_map(point)
 			false
 
-		($ 'body').on 'click', '.pickpoint_change a', ->
+		($ 'body').on 'click', '.pickpoint_change a', (e) ->
+			e.preventDefault()
 			($ '#order_pickpoint_customer_attributes_pickpoint_num').val('')
-			($ '#pickpoint_map_widget').slideDown()
-			point = ($ '#selected_pickpoint').data('point')
-			google.maps.event.trigger(map, 'resize')
-			map.setCenter(new google.maps.LatLng(point.lat, point.lng))
 			($ '#selected_pickpoint').html('')
+			($ '#pickpoint_form_wrapper').slideUp()
+			($ '#pickpoint_type_select').slideDown()
+			false
+			
+		($ '#pickpoint_choose_point').click (e) ->
+			e.preventDefault()
+			($ '#pickpoint_type_select').slideUp()
+			($ '#pickpoint_map_widget').slideDown()
+			($ '#pickpoint_form_wrapper').slideDown()
+			google.maps.event.trigger(map, 'resize')
+			map.setCenter(new google.maps.LatLng(55.751801,37.616059))
+			false
+
+		($ '#pickpoint_chose_self').click (e) ->
+			e.preventDefault()
+			point = ($ '#selected_pickpoint').data('homePoint')
+			($ '#order_pickpoint_customer_attributes_pickpoint_num').val(point.num)
+			($ '#pickpoint_type_select').slideUp()
+			($ '#pickpoint_form_wrapper').slideDown()
+			($ '#selected_pickpoint').data('point', point)
+			($ '#selected_pickpoint').html JST['store/templates/selected_point'](point: point, week_days: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'])
+			generate_small_map(point)
 			false
 
 		getNearest = (geocoded) ->

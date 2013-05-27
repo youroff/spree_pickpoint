@@ -1,0 +1,84 @@
+<% p = @order.pickpoint %>
+<h3>Место получения заказа</h3>
+<div class="six columns alpha">
+	<div class="pickpoint_name">
+		<%= p.name %>
+		<% unless p.metro.empty? %>
+		<span class="pickpoint_metro">(<%= p.metro %>)</span>
+		<% end %>
+	</div>
+	<div class="pickpoint_addr">
+		<%= p.addr %>
+	</div>
+	<br/>
+	<div>
+		<% unless p.out.nil? || p.out.empty? %>
+		<div class="pickpoint_out">
+			<b>Как пройти?</b><br/> <%= p.out %>
+		</div>
+		<% end %>
+		<% unless p.in.nil? || p.in.empty? %>
+		<div class="pickpoint_in">
+			<b>Расположение внутри:</b> <%= p.in %>
+		</div>
+		<% end %>
+	</div>
+	<div>
+		<% if p.cash || p.card %>
+		<div class="pickpoint_payment">
+			Варианты оплаты: 
+			<% if p.cash %>
+			<img src="/assets/store/cash.gif" width="14" height="11" title="Наличные"/>
+			<% end %>
+			<% if p.card %>
+			<img src="/assets/store/visa.gif" width="17" height="11" title="Карта VISA"/>
+			<img src="/assets/store/mastercard.gif" width="18" height="11" title="Карта MasterCard"/>
+			<% end %>
+		</div>
+		<% end %>
+	</div>
+	<div style='clear: both'></div>
+	<% week_days = %w(Пн Вт Ср Чт Пт Сб Вс) %>
+	<div class="pickpoint_sched">
+	<% p.sched.split(',').each do |day| %>
+	    <div class="pickpoint_sched_day<%= ' not_working' if day == 'NODAY' %><%= ' weekend' if week_days.length < 3 %>" style="<%= 'margin-right: 0px;' if week_days.length == 1 %>">
+	        <div class="pickpoint_sched_day_title">
+	            <%= week_days.shift %>
+	        </div>
+	        <div class="pickpoint_sched_value">
+	            <% if day == 'NODAY' %>
+	                &nbsp;<br/>&nbsp;
+	            <% else %>
+	                <% periods = day.split('/') %> <!-- periods[1] is a lunch break -->
+	                <% hours = periods[0].split('-') %>
+	                <%= hours[0] %><br/><%= hours[1] %>
+	            <% end %>
+	        </div>
+	    </div>
+	<% end %>
+	<div style='clear: both'></div>
+	</div>
+</div>
+<div class="six columns omega">
+	<div id="small_map_canvas"></div>
+	<script>
+		icon = new google.maps.MarkerImage('/assets/store/pickpoint_<%= (p.ptype == "pvz") ? "office" : "postamat" %>.png')
+		pos = new google.maps.LatLng(<%= p.lat %>, <%= p.lng %>)
+		map_opts = {
+			center: pos,
+			zoom: 14,
+			streetViewControl: false,
+			overviewMapControl: false,
+			mapTypeControl: false,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		}
+		map = new google.maps.Map(document.getElementById("small_map_canvas"), map_opts)
+		marker_opts = {
+			position: pos,
+			content: '<%= p.name %>',
+			icon: icon,
+			map: map
+		}
+		marker = new google.maps.Marker(marker_opts)
+	</script>
+</div>

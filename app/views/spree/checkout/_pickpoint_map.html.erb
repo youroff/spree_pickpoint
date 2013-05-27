@@ -1,9 +1,39 @@
+<div id="pickpoint_type_select">
+	<h3>Выберите способ получения заказа</h3>
+	<div class="alpha six columns">
+		<h4>Самовывоз</h4>
+		<p>
+			Вы сможете получить заказ в нашем офисе по адресу <b><%= "#{pickpoint_home.city}, #{pickpoint_home.addr}" %></b>.
+			Доставка со склада в офис стоит <%= pickpoint_home.delivery_price %> р.
+			О том, что заказ готов к выдаче вы узнаете по E-mail, указанному при оформлении заказа.
+			Так же можно уточнить состояние заказа по телефону <b>+7 (901) 903-1917</b>
+		</p>
+	</div>
+	<div class="omega six columns">
+		<h4>Доставка через службу PickPoint</h4>
+		<p>
+			Это современная служба, обеспечивающая доставку заказов до собственных автоматизированных и традиционных пунктов выдачи по всей России.
+			На данный момент доступно <%= pickpoint_count %> точек PickPoint.
+			Данный способ доставки обеспечивает наивысшую степень анонимности.
+		</p>
+	</div>
+	<div class="clear"></div>
+	<div class="alpha six columns">
+		<button id="pickpoint_chose_self" class="button primary">Самовывоз из офиса</button>
+	</div>
+	<div class="omega six columns">
+		<button id="pickpoint_choose_point" class="button primary">Выбрать ближайший пункт PickPoint</button>
+	</div>
+	<div class="clear"></div>
+	
+</div>
 <%= javascript_tag "pickpoints = " + Spree::Pickpoint.coordinates %>
 <div id="pickpoint_map_widget">
     <h3>Выберите место получения заказа</h3>
-    <p>Для доставки товаров мы используем службу <a href="http://pickpoint.ru">PickPoint</a>.
-       Это современная служба доставки, управляющая сотнями автоматизированных и традиционных пунктов выдачи заказов по всей России.
-       Данный способ доставки обеспечивает наивысшую степень анонимности. Чтобы найти ближайший к вам пункт выдачи заказов, используйте карту или наберите почтовый адрес в поле поиска.</p>
+    <p>
+		<!-- Для доставки товаров мы используем службу <a href="http://pickpoint.ru">PickPoint</a>. -->
+    	Чтобы найти ближайший к вам пункт выдачи заказов, используйте карту или наберите почтовый адрес в поле поиска.
+	</p>
     <div id="map_finder_wrapper">
         <form id="map_finder">
             <input type="text" class="search_field" value=""/>

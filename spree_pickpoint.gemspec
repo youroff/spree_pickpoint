@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_pickpoint'
-  s.version     = '0.0.1'
+  s.version     = '0.0.2'
   s.summary     = 'Spree Pickpoint delivery (experimental)'
   s.description = 'Pickpoint support for Spree, '
   s.required_ruby_version = '>= 1.9.3'

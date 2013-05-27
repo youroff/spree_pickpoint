@@ -8,6 +8,7 @@ module Spree
     #TODO: Delivery Tracking, Delivery Status
     
     validates_presence_of :name, :phone
+    validates :phone, format: { with: /\A[0-9]{10}\z/, message: "Телефон должен быть указан в формате 10 цифр без \"восьмерки\"" }
     validates_presence_of :pickpoint_num, :message => 'Вы должны выбрать место получения заказа'
     validate :pickpoint_existance
     

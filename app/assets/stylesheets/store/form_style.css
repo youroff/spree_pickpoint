@@ -1,3 +1,7 @@
+#pickpoint_form_wrapper {
+	display: none;
+}
+
 #pickpoint_customer_form {
 	margin-top: 30px;
 }

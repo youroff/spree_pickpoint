@@ -22,3 +22,6 @@ ru:
     pickpoint: "Доставка"
   name_or_alias: "Имя или псевдоним"
   cellphone: "Мобильный телефон"
+  
+  pickpoint_main: Пункт самовывоза
+  pickpoint_main_point: Главный пункт самовывоза

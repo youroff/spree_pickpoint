@@ -2,7 +2,7 @@ module Spree
   module Admin
     class PickpointRegionsController < Spree::Admin::BaseController
       def show
-        PickpointRegion.sync(PickpointCity.regions) if params['refresh'].present? 
+        PickpointRegion.sync if params['refresh'].present? 
         @regions = PickpointRegion.all
       end
       

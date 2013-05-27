@@ -1,5 +1,5 @@
 <% if @order.pickpoint %>
-	Выбранный вами <strong><%= @order.pickpoint.name %></strong>
+	Выбранное вами место получения заказа <strong><%= @order.pickpoint.name %></strong>
 	принимает к оплате <%= @order.pickpoint.payment_opts.join(' и ') %>
 	
 <% end %>
