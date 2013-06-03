@@ -8,7 +8,7 @@
 		    <% end %>
 		</div>
 		<div class="pickpoint_addr">
-		    <%= @point.addr %>
+		    <%= @point.city %>, <%= @point.addr %>
 		</div>
 		<% if @point.out: %>
 			<div class="pickpoint_desc">
